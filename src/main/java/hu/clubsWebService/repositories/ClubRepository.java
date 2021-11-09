@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ClubRepository extends JpaRepository<Club, Long> {
     public List<Club> findAllByOrderByName();
+
 }
