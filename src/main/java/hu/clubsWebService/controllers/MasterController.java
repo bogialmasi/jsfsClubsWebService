@@ -3,28 +3,16 @@ package hu.clubsWebService.controllers;
 import hu.clubsWebService.domain.Category;
 import hu.clubsWebService.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class MasterController {
-
-    private CategoryService categoryService;
-
-    @Autowired
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
     @GetMapping("/")
     public String home(){
-        return "Clubservice";
-    }
-
-    @GetMapping("/categories")
-    public List<Category> categories(){
-        return categoryService.getCategories();
-    }
+        return "index";
+    } //templates mappában keresni fog egy "index" HTML fájlt
 }
