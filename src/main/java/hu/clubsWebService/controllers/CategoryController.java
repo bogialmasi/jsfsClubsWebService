@@ -4,6 +4,7 @@ import hu.clubsWebService.domain.Category;
 import hu.clubsWebService.domain.Club;
 import hu.clubsWebService.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,27 +20,33 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    public List<Category> categories(){
+    public List<Category> categories() {
         return service.getCategories();
     }
 
     @GetMapping("/categories/{id}")
-    public Category getCategoryById(@PathVariable("id") int id){
+    public Category getCategoryById(@PathVariable("id") int id) {
         return service.getCategoryById(id);
     }
 
     @GetMapping("/categories/{id}/clubs")
-    public List<Club> getClubsByCategory(@PathVariable("id") int id){
+    public List<Club> getClubsByCategory(@PathVariable("id") int id) {
         return service.getClubsByCategory(id);
     }
 
     @PostMapping("/categories")
-    public Category addCategory(@RequestBody Category category){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category addCategory(@RequestBody Category category) {
         return service.addCategory(category);
     }
 
     @DeleteMapping("/categories/{id}")
-    public void deleteCategory(@PathVariable("id") int id){
+    public void deleteCategory(@PathVariable("id") int id) {
         service.deleteCategory(id);
+    }
+
+    @PatchMapping("/categories/{id}/{agelimit}")
+    public void updateCategory(@PathVariable("id") int id, @PathVariable("agelimit") int agelimit){
+        service.updateCategory(id, agelimit);
     }
 }

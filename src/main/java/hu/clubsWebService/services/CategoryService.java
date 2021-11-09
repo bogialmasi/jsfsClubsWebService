@@ -25,7 +25,7 @@ public class CategoryService {
 
     public Category getCategoryById(int id) {
         Optional<Category> category = repository.findById(id);
-        if (category.isPresent()){
+        if (category.isPresent()) {
             return category.get();
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -33,14 +33,14 @@ public class CategoryService {
 
     public List<Club> getClubsByCategory(int id) {
         Optional<Category> category = repository.findById(id);
-        if (category.isPresent()){
+        if (category.isPresent()) {
             return category.get().getClubs();
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     public Category addCategory(Category category) {
-        if (isUnique(category.getName())){
+        if (isUnique(category.getName())) {
             return repository.save(category);
         }
         throw new ResponseStatusException(HttpStatus.CONFLICT);
@@ -49,17 +49,30 @@ public class CategoryService {
     private boolean isUnique(String name) {
         List<Category> categories = repository.findAll();
         for (Category category : categories) {
-            if (category.getName().equals(name)){
+            if (category.getName().equals(name)) {
                 return false;
             }
-        } return true;
+        }
+        return true;
     }
 
     public void deleteCategory(int id) {
         Optional<Category> category = repository.findById(id);
-        if (category.isPresent()){
+        if (category.isPresent()) {
             repository.deleteById(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    public void updateCategory(int id, int agelimit) {
+        Optional<Category> optionalCategory = repository.findById(id);
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            category.setAgelimit(agelimit);
+            repository.save(category);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }

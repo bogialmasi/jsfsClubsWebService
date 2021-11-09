@@ -7,26 +7,34 @@
 <body>
 <h2>RestAPI webszolgáltatásai, webservice</h2>
 <table>
-  <tr>
-    <th>Metódus</th>
-    <th>URL</th>
-    <th>Szolgáltatás</th>
-  </tr>
-  <tr>
-    <td>GET</td>
-    <td><a href="/categories">/categories</a></td>
-    <td>Kategóriák listája</td>
-  </tr>
-  <tr>
-    <td>GET</td>
-    <td><a href="/categories/1">/categories/{id}</a></td>
-    <td>Egy lategória</td>
-  </tr>
-  <tr>
-    <td>GET</td>
-    <td><a href="/categories/1/clubs">/categories/{id}/clubs</a></td>
-    <td>Egy lategóriába tartozó klubok</td>
-  </tr>
+    <tr>
+        <th>Metódus</th>
+        <th>URL</th>
+        <th>Szolgáltatás</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td><a href="/categories">/categories</a></td>
+        <td>Kategóriák listája</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td><a href="/categories/1">/categories/{id}</a></td>
+        <td>Egy kategória</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td><a href="/categories/1/clubs">/categories/{id}/clubs</a></td>
+        <td>Egy kategóriába tartozó klubok</td>
+    </tr>
+        <td>POST</td>
+        <td>/categories</td>
+        <td>Kategória létrehozása</td>
+    </tr>
+        <td>DELETE</td>
+        <td>/categories/{id}</td>
+        <td>Kateria törlése</td>
+    </tr>
 </table>
 </body>
 </html>
